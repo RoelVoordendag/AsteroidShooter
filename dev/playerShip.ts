@@ -111,7 +111,7 @@ class playerShip extends character{
             this._div.style.backgroundPositionX = "0px";
             break;
         case this.spacebar:                   
-            this.gun.fire(this.astroid, this.game);
+            this.gun.fire(this.game);
         
         }
     }
@@ -119,9 +119,6 @@ class playerShip extends character{
     onKeyUp(event:KeyboardEvent):void {
         this.upSpeed = this.downSpeed = this.leftSpeed = this.rightSpeed = 0;
     }
-    // public hitMeteor(){
-        
-    // }
 
 }
 

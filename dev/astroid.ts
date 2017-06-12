@@ -21,21 +21,21 @@ class Astroid extends character {
 
     }
     public hitMeteor(bullet: Bullet) {
-        var metroid: ClientRect = this._div.getBoundingClientRect();
+        // var metroid: ClientRect = this._div.getBoundingClientRect();
        
-            if (this.x < bullet.x + bullet.x + 30 &&
-                this.x + metroid.width > bullet.x &&
-                this.y < bullet.y + 30 &&
-                this.y + metroid.height > bullet.y) {
-                    console.log('i am the best');
-                    // this._div.remove();
-                    // bullet.div.remove();
-
-                    // this.game.removeAsteroidFromArray(this);
-                    this.game.removeBulletFromArray(bullet);
-                    this.game.removeAsteroidFromArray(this);
+        //     if (this.x < bullet.x + bullet.x + 30 &&
+        //         this.x + metroid.width > bullet.x &&
+        //         this.y < bullet.y + 30 &&
+        //         this.y + metroid.height > bullet.y) {
+        //             console.log('i am the best');
+        //             // this._div.remove();
+        //             // bullet.div.remove();
+                    
+        //             // this.game.removeAsteroidFromArray(this);
+        //             this.game.removeBulletFromArray(bullet);
+        //             this.game.removeAsteroidFromArray(this);
             
-        }
+        
 
     }
     removeAsteroidDiv(){

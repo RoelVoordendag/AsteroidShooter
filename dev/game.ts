@@ -1,5 +1,6 @@
 /// <reference path="playerShip.ts"/>
 /// <reference path = 'astroid.ts'/>
+/// <reference path = 'Bullet.ts'/>
 
 // <reference path='astroid.ts'/>
 class Game {
@@ -10,9 +11,11 @@ class Game {
     public bullets:Array<Bullet> = new Array<Bullet>();
     private astroid:Astroid;
     public meteors : Array<Astroid> = new Array<Astroid>();
+    private bullet:Bullet;
           
     
     constructor(){
+       
         //creating spaceship
         this.spaceship = new playerShip(this);
         // this.test = new test();      
@@ -23,6 +26,7 @@ class Game {
     }
     public addBullit(b:Bullet){
         this.bullets.push(b);
+        
     }
 
     gameLoop(){
@@ -35,10 +39,26 @@ class Game {
         for(let m of this.meteors){
             m.move();
             // m.hitMeteor();\\
-            
+        }
+        for(let c of this.bullets){
+            for(let e of this.meteors){
+                 if (c.x                    < e.x + 100 &&
+                     c.x + 30        > e.x &&
+                     c.y                    < e.y + 100 &&
+                     30 + c.y         > e.y) {
+                        this.bullets.splice(this.bullets.indexOf(c), 1); 
+                        this.meteors.splice(this.meteors.indexOf(e), 1); 
+
+                        c.removeBulletDiv();
+                        
+                        e.removeAsteroidDiv();
+                }
+            }
         }
         requestAnimationFrame(() => this.gameLoop());
-    }
+    
+    }   
+    
        private creatingMeteor(){
         for(let i = 0; i<5; i++){   
             let position = Math.floor((Math.random() * window.innerWidth) + 1);
@@ -47,31 +67,7 @@ class Game {
             this.meteors.push(this.astroid);
             
             // position+=random;
-        }
-       }
-
-    removeAsteroidFromArray(a:Astroid){
-        a.removeAsteroidDiv();
-
-        let i : number = this.meteors.indexOf(a);
-        if(i != -1) {
-			this.bullets.splice(i, 1);
-		}
-		console.log("Aantal is " + this.bullets.length);
-        
-    }
-    public removeBulletFromArray(b:Bullet){
-        
-        // div verwijderen
-        b.removeBulletDiv();
-
-        // bullet instance verwijderen uit de array
-		let i : number = this.bullets.indexOf(b);
-		if(i != -1) {
-			this.bullets.splice(i, 1);
-		}
-		console.log("Aantal is " + this.bullets.length);
-	}
+            }
+         }
     }
 
-}

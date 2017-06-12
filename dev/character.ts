@@ -7,8 +7,6 @@ class character{
     public bullet:Bullet;
 
 
-
-
     constructor(div:string, x:number, y:number){
         console.log(div);
         //creating div
@@ -31,18 +29,5 @@ class character{
         }   
             
             
-    }
-
-    public hitMeteor(bullet:Bullet):void{
-        // console.log(bullet.x);
-        //   var metroid:ClientRect = this._div.getBoundingClientRect();
-        //     if(this.x < this.bullet.x + this.bullet.x + 30 &&
-        //     this.x + metroid.width > this.bullet.x &&
-        //     this.y < this.bullet.y + 30 &&
-        //     this.y + metroid.height > this.bullet.y){
-        //         console.log('i am the best');
-        // console.log('peop');
-        console.log(this.y);
-        //     }
     }
 }

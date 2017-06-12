@@ -25,9 +25,6 @@ var character = (function () {
             this._div.remove();
         }
     };
-    character.prototype.hitMeteor = function (bullet) {
-        console.log(this.y);
-    };
     return character;
 }());
 var playerShip = (function (_super) {
@@ -114,7 +111,7 @@ var playerShip = (function (_super) {
                 this._div.style.backgroundPositionX = "0px";
                 break;
             case this.spacebar:
-                this.gun.fire(this.astroid, this.game);
+                this.gun.fire(this.game);
         }
     };
     playerShip.prototype.onKeyUp = function (event) {
@@ -146,6 +143,21 @@ var Game = (function () {
             var m = _c[_b];
             m.move();
         }
+        for (var _d = 0, _e = this.bullets; _d < _e.length; _d++) {
+            var c = _e[_d];
+            for (var _f = 0, _g = this.meteors; _f < _g.length; _f++) {
+                var e = _g[_f];
+                if (c.x < e.x + 100 &&
+                    c.x + 30 > e.x &&
+                    c.y < e.y + 100 &&
+                    30 + c.y > e.y) {
+                    this.bullets.splice(this.bullets.indexOf(c), 1);
+                    this.meteors.splice(this.meteors.indexOf(e), 1);
+                    c.removeBulletDiv();
+                    e.removeAsteroidDiv();
+                }
+            }
+        }
         requestAnimationFrame(function () { return _this.gameLoop(); });
     };
     Game.prototype.creatingMeteor = function () {
@@ -155,26 +167,10 @@ var Game = (function () {
             this.meteors.push(this.astroid);
         }
     };
-    Game.prototype.removeAsteroidFromArray = function (a) {
-        a.removeAsteroidDiv();
-        var i = this.meteors.indexOf(a);
-        if (i != -1) {
-            this.bullets.splice(i, 1);
-        }
-        console.log("Aantal is " + this.bullets.length);
-    };
-    Game.prototype.removeBulletFromArray = function (b) {
-        b.removeBulletDiv();
-        var i = this.bullets.indexOf(b);
-        if (i != -1) {
-            this.bullets.splice(i, 1);
-        }
-        console.log("Aantal is " + this.bullets.length);
-    };
     return Game;
 }());
 var Bullet = (function () {
-    function Bullet(x, y, astroid, game) {
+    function Bullet(x, y, game) {
         this.width = 22;
         this.height = 22;
         this.div = document.createElement("bullet");
@@ -189,10 +185,6 @@ var Bullet = (function () {
         this.x += this.xspeed;
         this.y += this.yspeed;
         this.div.style.transform = "translate(" + this.x + "px, " + this.y + "px)";
-        for (var _i = 0, _a = this.game.meteors; _i < _a.length; _i++) {
-            var a = _a[_i];
-            a.hitMeteor(this);
-        }
         if (this.y < -50) {
             this.div.remove();
         }
@@ -219,15 +211,6 @@ var Astroid = (function (_super) {
         return _this;
     }
     Astroid.prototype.hitMeteor = function (bullet) {
-        var metroid = this._div.getBoundingClientRect();
-        if (this.x < bullet.x + bullet.x + 30 &&
-            this.x + metroid.width > bullet.x &&
-            this.y < bullet.y + 30 &&
-            this.y + metroid.height > bullet.y) {
-            console.log('i am the best');
-            this.game.removeBulletFromArray(bullet);
-            this.game.removeAsteroidFromArray(this);
-        }
     };
     Astroid.prototype.removeAsteroidDiv = function () {
         this._div.remove();
@@ -239,10 +222,9 @@ var Gun = (function () {
         this.game = game;
         this.spaceship = spaceship;
     }
-    Gun.prototype.fire = function (Astroid, game) {
-        this.astroid = Astroid;
+    Gun.prototype.fire = function (game) {
         var rect = this.spaceship.getBoundingClientRect();
-        var b = new Bullet(rect.left + 35, rect.top - 50, this.astroid, this.game);
+        var b = new Bullet(rect.left + 35, rect.top - 50, this.game);
         this.game.addBullit(b);
     };
     return Gun;
