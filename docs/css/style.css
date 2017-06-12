@@ -19,7 +19,7 @@ spaceship{
 }
 bullet{
     background-image: url('../images/laser/bullet_laser.png');
-    width: 20px; height: 40px;
+    width: 20px; height: 30px;
 }
 asteroid{
     background-image: url('../images/asteroid/meteor_big.png');

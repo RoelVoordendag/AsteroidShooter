@@ -151,13 +151,25 @@ var Game = (function () {
     Game.prototype.creatingMeteor = function () {
         for (var i = 0; i < 5; i++) {
             var position = Math.floor((Math.random() * window.innerWidth) + 1);
-            this.astroid = new Astroid(position);
+            this.astroid = new Astroid(position, this);
             this.meteors.push(this.astroid);
         }
     };
     Game.prototype.removeAsteroidFromArray = function (a) {
+        a.removeAsteroidDiv();
+        var i = this.meteors.indexOf(a);
+        if (i != -1) {
+            this.bullets.splice(i, 1);
+        }
+        console.log("Aantal is " + this.bullets.length);
     };
     Game.prototype.removeBulletFromArray = function (b) {
+        b.removeBulletDiv();
+        var i = this.bullets.indexOf(b);
+        if (i != -1) {
+            this.bullets.splice(i, 1);
+        }
+        console.log("Aantal is " + this.bullets.length);
     };
     return Game;
 }());
@@ -185,11 +197,14 @@ var Bullet = (function () {
             this.div.remove();
         }
     };
+    Bullet.prototype.removeBulletDiv = function () {
+        this.div.remove();
+    };
     return Bullet;
 }());
 var Astroid = (function (_super) {
     __extends(Astroid, _super);
-    function Astroid(x) {
+    function Astroid(x, game) {
         var _this = this;
         var a = 'asteroid';
         var b = x;
@@ -200,6 +215,7 @@ var Astroid = (function (_super) {
         console.log(_this.posX);
         console.log(_this.posy);
         console.log(_this.x, _this.y);
+        _this.game = game;
         return _this;
     }
     Astroid.prototype.hitMeteor = function (bullet) {
@@ -209,9 +225,12 @@ var Astroid = (function (_super) {
             this.y < bullet.y + 30 &&
             this.y + metroid.height > bullet.y) {
             console.log('i am the best');
-            this._div.remove();
-            bullet.div.remove();
+            this.game.removeBulletFromArray(bullet);
+            this.game.removeAsteroidFromArray(this);
         }
+    };
+    Astroid.prototype.removeAsteroidDiv = function () {
+        this._div.remove();
     };
     return Astroid;
 }(character));

@@ -51,7 +51,14 @@ class Game {
        }
 
     removeAsteroidFromArray(a:Astroid){
+        a.removeAsteroidDiv();
 
+        let i : number = this.meteors.indexOf(a);
+        if(i != -1) {
+			this.bullets.splice(i, 1);
+		}
+		console.log("Aantal is " + this.bullets.length);
+        
     }
     public removeBulletFromArray(b:Bullet){
         

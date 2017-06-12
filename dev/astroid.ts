@@ -28,13 +28,17 @@ class Astroid extends character {
                 this.y < bullet.y + 30 &&
                 this.y + metroid.height > bullet.y) {
                     console.log('i am the best');
-                    this._div.remove();
+                    // this._div.remove();
                     // bullet.div.remove();
 
                     // this.game.removeAsteroidFromArray(this);
                     this.game.removeBulletFromArray(bullet);
+                    this.game.removeAsteroidFromArray(this);
             
         }
 
+    }
+    removeAsteroidDiv(){
+        this._div.remove();
     }
 }
