@@ -8,11 +8,11 @@ class Game {
     public meteors: Array<Astroid> = new Array<Astroid>();
     private bullet: Bullet;
     public score: number;
-    public scoreboard:scoreBoard;
+    private div:HTMLElement;
 
 
     constructor() {
-       
+
         //creating spaceship
         this.spaceship = new playerShip(this);
         // this.test = new test();      
@@ -24,7 +24,10 @@ class Game {
         //making meteors all the time
         setInterval(() => this.creatingMeteor(), 3000);
         //giving score a starting point 
-         this.score = 0;
+        this.score = 0;
+        this.div  = document.createElement('score');
+        document.body.appendChild(this.div); 
+        this.div.innerHTML = 'Score:' + this.score;
 
     }
     public addBullit(b: Bullet) {
@@ -49,12 +52,14 @@ class Game {
                     c.x + 30 > e.x &&
                     c.y < e.y + 100 &&
                     30 + c.y > e.y) {
-                        this.bullets.splice(this.bullets.indexOf(c), 1);
-                        this.meteors.splice(this.meteors.indexOf(e), 1);
+                    this.bullets.splice(this.bullets.indexOf(c), 1);
+                    this.meteors.splice(this.meteors.indexOf(e), 1);
 
-                        c.removeBulletDiv();
+                    c.removeBulletDiv();
 
-                        e.removeAsteroidDiv();
+                    e.removeAsteroidDiv();
+
+                    this.scoreBoard();
                 }
             }
         }
@@ -63,21 +68,20 @@ class Game {
     }
 
     private creatingMeteor() {
-        let random = Math.floor((Math.random()* 8)+ 1);
-            for (let i = 0; i < random; i++) {
-                let position = Math.floor((Math.random() * window.innerWidth) + 1);
+        let random = Math.floor((Math.random() * 8) + 2);
+        for (let i = 0; i < random; i++) {
+            let position = Math.floor((Math.random() * window.innerWidth) + 1);
+            this.astroid = new Astroid(position, this);
+            this.meteors.push(this.astroid);
 
-                this.astroid = new Astroid(position, this);
-                this.meteors.push(this.astroid);
-
-                // position+=random;
-            }
+            // position+=random;
         }
-    private scoreBoard(){
-        // this.sco
-        // this.score  += 1;
-        // console.log(this.score);
+    }
+    private scoreBoard() {
+        this.score  += 1;
+        this.div.innerHTML= 'Score:' + this.score;
 
-    }         
+
+    }
 }
 

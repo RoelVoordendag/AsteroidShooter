@@ -26,6 +26,23 @@ var character = (function () {
     };
     return character;
 }());
+var Astroid = (function (_super) {
+    __extends(Astroid, _super);
+    function Astroid(x, game) {
+        var _this = this;
+        var a = 'asteroid';
+        var b = x;
+        var c = -100;
+        _this = _super.call(this, a, b, c) || this;
+        _this.move();
+        _this.game = game;
+        return _this;
+    }
+    Astroid.prototype.removeAsteroidDiv = function () {
+        this._div.remove();
+    };
+    return Astroid;
+}(character));
 var playerShip = (function (_super) {
     __extends(playerShip, _super);
     function playerShip(game) {
@@ -47,7 +64,7 @@ var playerShip = (function (_super) {
         var a = 'spaceship';
         var x = 40;
         var y = 80;
-        _this = _super.call(this, a, y, x) || this;
+        _this = _super.call(this, a, x, y) || this;
         _this.game = game;
         _this.spaceship = _this._div;
         _this.gun = new Gun(_this.game, _this.spaceship);
@@ -139,6 +156,9 @@ var Game = (function () {
         requestAnimationFrame(function () { return _this.gameLoop(); });
         setInterval(function () { return _this.creatingMeteor(); }, 3000);
         this.score = 0;
+        this.div = document.createElement('score');
+        document.body.appendChild(this.div);
+        this.div.innerHTML = 'Score:' + this.score;
     }
     Game.prototype.addBullit = function (b) {
         this.bullets.push(b);
@@ -166,13 +186,14 @@ var Game = (function () {
                     this.meteors.splice(this.meteors.indexOf(e), 1);
                     c.removeBulletDiv();
                     e.removeAsteroidDiv();
+                    this.scoreBoard();
                 }
             }
         }
         requestAnimationFrame(function () { return _this.gameLoop(); });
     };
     Game.prototype.creatingMeteor = function () {
-        var random = Math.floor((Math.random() * 8) + 1);
+        var random = Math.floor((Math.random() * 8) + 2);
         for (var i = 0; i < random; i++) {
             var position = Math.floor((Math.random() * window.innerWidth) + 1);
             this.astroid = new Astroid(position, this);
@@ -180,6 +201,8 @@ var Game = (function () {
         }
     };
     Game.prototype.scoreBoard = function () {
+        this.score += 1;
+        this.div.innerHTML = 'Score:' + this.score;
     };
     return Game;
 }());
@@ -208,23 +231,12 @@ var Bullet = (function () {
     };
     return Bullet;
 }());
-var Astroid = (function (_super) {
-    __extends(Astroid, _super);
-    function Astroid(x, game) {
-        var _this = this;
-        var a = 'asteroid';
-        var b = x;
-        var c = -100;
-        _this = _super.call(this, a, b, c) || this;
-        _this.move();
-        _this.game = game;
-        return _this;
+var endScreen = (function () {
+    function endScreen() {
+        console.log('game is over');
     }
-    Astroid.prototype.removeAsteroidDiv = function () {
-        this._div.remove();
-    };
-    return Astroid;
-}(character));
+    return endScreen;
+}());
 var Gun = (function () {
     function Gun(game, spaceship) {
         this.game = game;
@@ -265,19 +277,4 @@ var startScreen = (function () {
     };
     return startScreen;
 }());
-var test = (function (_super) {
-    __extends(test, _super);
-    function test() {
-        var _this = this;
-        var a = 'spaceship';
-        var x = 30;
-        var y = 30;
-        _this = _super.call(this, a, y, x) || this;
-        return _this;
-    }
-    test.prototype.move = function () {
-        console.log('dit is een test');
-    };
-    return test;
-}(character));
 //# sourceMappingURL=main.js.map

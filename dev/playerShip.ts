@@ -37,7 +37,8 @@ class playerShip extends character{
         var a = 'spaceship';
         var x = 40;
         var y = 80;
-        super(a,y,x);
+        super(a,x,y);
+
         this.game = game;
         this.spaceship = this._div;
         this.gun = new Gun(this.game, this.spaceship);

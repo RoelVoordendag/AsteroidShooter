@@ -58,3 +58,7 @@ playButton{
     overflow: hidden;
     color:white;
 }
+score{
+    color:white;
+    font-size:30px;
+}

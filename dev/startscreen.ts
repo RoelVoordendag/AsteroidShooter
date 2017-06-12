@@ -1,8 +1,8 @@
-class startScreen{
-    public button:HTMLElement;
-    public title:HTMLElement;
-    public text:HTMLElement;
-    constructor(){
+class startScreen {
+    public button: HTMLElement;
+    public title: HTMLElement;
+    public text: HTMLElement;
+    constructor() {
         this.title = document.createElement('title');
         document.body.appendChild(this.title);
 
@@ -17,20 +17,18 @@ class startScreen{
         document.body.appendChild(this.button);
 
         this.button.innerHTML = 'Spelen!';
-            this.button.addEventListener("click", () => this.deleteAll()); 
-                
-            
-    }   
-    deleteAll(){
+        this.button.addEventListener("click", () => this.deleteAll());
+    }
+    deleteAll() {
         this.title.remove();
         this.title = undefined;
         this.text.remove();
         this.text = undefined;
         this.button.remove();
         this.button = undefined;
-   
+
         new Game();
-       
+
     }
 
 }
