@@ -1,0 +1,27 @@
+body{
+    /*background-color: black;*/
+    background-image: url('../images/background/purple.png');
+    background-size: cover;
+}
+
+
+body * {
+    position: absolute;
+    display: block;
+    margin:0px; padding:0px;
+    box-sizing: border-box;
+    background-repeat: no-repeat;
+}
+spaceship{
+    background-image: url('../images/spaceship/red.png');
+    width: 100px; height: 100px;
+ 
+}
+bullet{
+    background-image: url('../images/laser/bullet_laser.png');
+    width: 20px; height: 40px;
+}
+asteroid{
+    background-image: url('../images/asteroid/meteor_big.png');
+    width: 100px; height: 80px;
+}
