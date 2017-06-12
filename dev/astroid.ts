@@ -3,8 +3,9 @@
 class Astroid extends character {
     private posX: number;
     private posy: number;
+    private game:Game;
 
-    constructor(x: number) {
+    constructor(x: number, game:Game) {
         let a = 'asteroid';
         let b = x;
         let c = -100;
@@ -14,6 +15,8 @@ class Astroid extends character {
         console.log(this.posX);
         console.log(this.posy);
         console.log(this.x, this.y);
+        
+        this.game = game
 
 
     }
@@ -26,10 +29,10 @@ class Astroid extends character {
                 this.y + metroid.height > bullet.y) {
                     console.log('i am the best');
                     this._div.remove();
-                    bullet.div.remove();
+                    // bullet.div.remove();
 
                     // this.game.removeAsteroidFromArray(this);
-                    // this.game.removeBulletFromArray(bullet);
+                    this.game.removeBulletFromArray(bullet);
             
         }
 

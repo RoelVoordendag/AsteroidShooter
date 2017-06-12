@@ -49,4 +49,8 @@ class Bullet {
             this.div.remove();
         }
     }
+    removeBulletDiv(){
+                this.div.remove();
+
+    }
 }

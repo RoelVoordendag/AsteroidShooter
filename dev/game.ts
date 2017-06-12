@@ -18,9 +18,6 @@ class Game {
         // this.test = new test();      
         console.log('hello darkness my old friend');
                 this.creatingMeteor();
-
-
-        
         //making the animation 60 fps
         requestAnimationFrame(() => this.gameLoop());
     }
@@ -46,7 +43,7 @@ class Game {
         for(let i = 0; i<5; i++){   
             let position = Math.floor((Math.random() * window.innerWidth) + 1);
 
-            this.astroid = new Astroid(position);
+            this.astroid = new Astroid(position, this);
             this.meteors.push(this.astroid);
             
             // position+=random;
@@ -56,8 +53,18 @@ class Game {
     removeAsteroidFromArray(a:Astroid){
 
     }
-    removeBulletFromArray(b:Bullet){
+    public removeBulletFromArray(b:Bullet){
+        
+        // div verwijderen
+        b.removeBulletDiv();
 
+        // bullet instance verwijderen uit de array
+		let i : number = this.bullets.indexOf(b);
+		if(i != -1) {
+			this.bullets.splice(i, 1);
+		}
+		console.log("Aantal is " + this.bullets.length);
+	}
     }
 
 }
