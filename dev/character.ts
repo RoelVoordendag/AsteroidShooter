@@ -4,9 +4,8 @@ class character{
     public x:number;
     public y:number;
     private speed:number;
-    
+
     constructor(div:string, x:number, y:number){
-        console.log(div);
         //creating div
         this._div = document.createElement(div);
         document.body.appendChild(this._div);

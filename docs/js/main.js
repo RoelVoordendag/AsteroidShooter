@@ -10,7 +10,6 @@ var __extends = (this && this.__extends) || (function () {
 })();
 var character = (function () {
     function character(div, x, y) {
-        console.log(div);
         this._div = document.createElement(div);
         document.body.appendChild(this._div);
         this._div.style.transform = "translate(" + x + "px," + y + "px)";
@@ -128,6 +127,7 @@ var Game = (function () {
         console.log('hello darkness my old friend');
         this.creatingMeteor();
         requestAnimationFrame(function () { return _this.gameLoop(); });
+        setInterval(function () { return _this.creatingMeteor(); }, 3000);
     }
     Game.prototype.addBullit = function (b) {
         this.bullets.push(b);
@@ -161,7 +161,8 @@ var Game = (function () {
         requestAnimationFrame(function () { return _this.gameLoop(); });
     };
     Game.prototype.creatingMeteor = function () {
-        for (var i = 0; i < 5; i++) {
+        var random = Math.floor((Math.random() * 8) + 1);
+        for (var i = 0; i < random; i++) {
             var position = Math.floor((Math.random() * window.innerWidth) + 1);
             this.astroid = new Astroid(position, this);
             this.meteors.push(this.astroid);
@@ -202,16 +203,10 @@ var Astroid = (function (_super) {
         var b = x;
         var c = -100;
         _this = _super.call(this, a, b, c) || this;
-        console.log('ik ben een metero');
         _this.move();
-        console.log(_this.posX);
-        console.log(_this.posy);
-        console.log(_this.x, _this.y);
         _this.game = game;
         return _this;
     }
-    Astroid.prototype.hitMeteor = function (bullet) {
-    };
     Astroid.prototype.removeAsteroidDiv = function () {
         this._div.remove();
     };
