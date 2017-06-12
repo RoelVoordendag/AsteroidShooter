@@ -9,6 +9,7 @@ class Game {
     private bullet: Bullet;
     public score: number;
     private div:HTMLElement;
+    public lives: number;
 
 
     constructor() {
@@ -28,7 +29,8 @@ class Game {
         this.div  = document.createElement('score');
         document.body.appendChild(this.div); 
         this.div.innerHTML = 'Score:' + this.score;
-
+        //giving total of lives
+        this.lives = 3;
     }
     public addBullit(b: Bullet) {
         this.bullets.push(b);

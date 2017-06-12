@@ -24,20 +24,20 @@ class playerShip extends character{
     private spacebar: number = 32;      //spacebar
     public spacebarHit: boolean = false;
 
-    private game:Game;
+    public game:Game;
     private gun: Gun;
     private astroid:Astroid;
 
     
 
     constructor(game:Game){
-        super(a,x,y);
+        super(a,x,y, game);
 
         //giving name to super to create and give placement    
         var a = 'spaceship';
         var x = 40;
         var y = 80;
-        super(a,x,y);
+        super(a,x,y, game);
 
         this.game = game;
         this.spaceship = this._div;

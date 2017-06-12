@@ -2,10 +2,10 @@
 School Game
 
 wat nog te doen
-    -Levens?? geen levens harcore like alwasy toevoegen(15-20min)
-    -score(30min)
+   
+   
     -mini meteoren(1-2 uur)
-    -dat ze blijven komen(15-20min) -> klaar
+    -endscreen
     Hiernaast nog een intro scherm gemaakt en een idee uitgedacht voor het eindscore game
     ...
     -uml maken(1 uur)

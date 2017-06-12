@@ -9,11 +9,12 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 var character = (function () {
-    function character(div, x, y) {
+    function character(div, x, y, game) {
         this._div = document.createElement(div);
         document.body.appendChild(this._div);
         this._div.style.transform = "translate(" + x + "px," + y + "px)";
         this.speed = Math.random() * 1 + 1;
+        this.game = game;
         this.x = x;
         this.y = y;
     }
@@ -33,7 +34,7 @@ var Astroid = (function (_super) {
         var a = 'asteroid';
         var b = x;
         var c = -100;
-        _this = _super.call(this, a, b, c) || this;
+        _this = _super.call(this, a, b, c, game) || this;
         _this.move();
         _this.game = game;
         return _this;
@@ -46,7 +47,7 @@ var Astroid = (function (_super) {
 var playerShip = (function (_super) {
     __extends(playerShip, _super);
     function playerShip(game) {
-        var _this = _super.call(this, a, x, y) || this;
+        var _this = _super.call(this, a, x, y, game) || this;
         _this.upKey = 87;
         _this.upKeyHitn = false;
         _this.upSpeed = 0;
@@ -64,7 +65,7 @@ var playerShip = (function (_super) {
         var a = 'spaceship';
         var x = 40;
         var y = 80;
-        _this = _super.call(this, a, x, y) || this;
+        _this = _super.call(this, a, x, y, game) || this;
         _this.game = game;
         _this.spaceship = _this._div;
         _this.gun = new Gun(_this.game, _this.spaceship);
@@ -159,6 +160,7 @@ var Game = (function () {
         this.div = document.createElement('score');
         document.body.appendChild(this.div);
         this.div.innerHTML = 'Score:' + this.score;
+        this.lives = 3;
     }
     Game.prototype.addBullit = function (b) {
         this.bullets.push(b);
