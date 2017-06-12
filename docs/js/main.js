@@ -118,6 +118,16 @@ var playerShip = (function (_super) {
     };
     return playerShip;
 }(character));
+var scoreBoard = (function () {
+    function scoreBoard() {
+        this.div = document.createElement('clock');
+        document.body.appendChild(this.div);
+    }
+    scoreBoard.prototype.scoreBoard = function () {
+        console.log('hello darkness');
+    };
+    return scoreBoard;
+}());
 var Game = (function () {
     function Game() {
         var _this = this;
@@ -128,6 +138,7 @@ var Game = (function () {
         this.creatingMeteor();
         requestAnimationFrame(function () { return _this.gameLoop(); });
         setInterval(function () { return _this.creatingMeteor(); }, 3000);
+        this.score = 0;
     }
     Game.prototype.addBullit = function (b) {
         this.bullets.push(b);
@@ -167,6 +178,8 @@ var Game = (function () {
             this.astroid = new Astroid(position, this);
             this.meteors.push(this.astroid);
         }
+    };
+    Game.prototype.scoreBoard = function () {
     };
     return Game;
 }());
@@ -225,8 +238,33 @@ var Gun = (function () {
     return Gun;
 }());
 window.addEventListener("load", function () {
-    new Game();
+    new startScreen();
 });
+var startScreen = (function () {
+    function startScreen() {
+        var _this = this;
+        this.title = document.createElement('title');
+        document.body.appendChild(this.title);
+        this.title.innerHTML = 'Welkom to the best Asteroid Shooter';
+        this.text = document.createElement('text');
+        document.body.appendChild(this.text);
+        this.text.innerHTML = 'Schiet de Asteroid en hou het het lang zo mogelijk vol. Wanner een Asteroid de onderkant van je scherm aanraakt ben je af. Probeer een hoge score te krijgen';
+        this.button = document.createElement('playButton');
+        document.body.appendChild(this.button);
+        this.button.innerHTML = 'Spelen!';
+        this.button.addEventListener("click", function () { return _this.deleteAll(); });
+    }
+    startScreen.prototype.deleteAll = function () {
+        this.title.remove();
+        this.title = undefined;
+        this.text.remove();
+        this.text = undefined;
+        this.button.remove();
+        this.button = undefined;
+        new Game();
+    };
+    return startScreen;
+}());
 var test = (function (_super) {
     __extends(test, _super);
     function test() {

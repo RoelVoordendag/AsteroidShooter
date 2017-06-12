@@ -1,18 +1,18 @@
 /// <reference path="playerShip.ts"/>
-/// <reference path = 'astroid.ts'/>
-/// <reference path = 'Bullet.ts'/>
+/// <reference path= 'scoreboard.ts'/>
 
-// <reference path='astroid.ts'/>
 class Game {
-
     public spaceship: playerShip;
     public bullets: Array<Bullet> = new Array<Bullet>();
     private astroid: Astroid;
     public meteors: Array<Astroid> = new Array<Astroid>();
     private bullet: Bullet;
+    public score: number;
+    public scoreboard:scoreBoard;
 
 
     constructor() {
+       
         //creating spaceship
         this.spaceship = new playerShip(this);
         // this.test = new test();      
@@ -23,6 +23,8 @@ class Game {
 
         //making meteors all the time
         setInterval(() => this.creatingMeteor(), 3000);
+        //giving score a starting point 
+         this.score = 0;
 
     }
     public addBullit(b: Bullet) {
@@ -71,5 +73,11 @@ class Game {
                 // position+=random;
             }
         }
+    private scoreBoard(){
+        // this.sco
+        // this.score  += 1;
+        // console.log(this.score);
+
+    }         
 }
 

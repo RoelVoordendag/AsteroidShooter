@@ -1,3 +1,6 @@
+html, body{
+     font-family: 'VT323' ;
+}
 body{
     /*background-color: black;*/
     background-image: url('../images/background/purple.png');
@@ -24,4 +27,34 @@ bullet{
 asteroid{
     background-image: url('../images/asteroid/meteor_big.png');
     width: 100px; height: 80px;
+}
+title{
+    left:calc(35% - 300px);
+    top:calc(20% - 100px);
+    width:1280px; height:200px;
+    padding:20px;
+    font-weight: bold;
+    font-size:70px;
+    color: white;
+}
+text{
+    left:calc(51% - 400px);
+    top:calc(35% - 100px);
+    width:800px; height:380px;
+    padding:20px;
+    font-size:60px;
+    text-align: center;
+    overflow: hidden;
+    color:white;
+}
+playButton{
+    left:calc(51% - 400px);
+    top:calc(90% - 100px);
+    width:800px; height:100px;
+    padding:20px;
+    font-size:80px;
+    font-weight: bold;
+    text-align: center;
+    overflow: hidden;
+    color:white;
 }
