@@ -4,9 +4,7 @@ class character{
     public x:number;
     public y:number;
     private speed:number;
-    public bullet:Bullet;
-
-
+    
     constructor(div:string, x:number, y:number){
         console.log(div);
         //creating div

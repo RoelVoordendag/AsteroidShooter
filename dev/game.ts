@@ -6,8 +6,6 @@
 class Game {
 
     public spaceship: playerShip;
-    public character: character;
-    public test:test;
     public bullets:Array<Bullet> = new Array<Bullet>();
     private astroid:Astroid;
     public meteors : Array<Astroid> = new Array<Astroid>();
@@ -42,10 +40,10 @@ class Game {
         }
         for(let c of this.bullets){
             for(let e of this.meteors){
-                 if (c.x                    < e.x + 100 &&
-                     c.x + 30        > e.x &&
-                     c.y                    < e.y + 100 &&
-                     30 + c.y         > e.y) {
+                 if (c.x < e.x + 100 &&
+                     c.x + 30> e.x &&
+                     c.y< e.y + 100 &&
+                     30 + c.y> e.y) {
                         this.bullets.splice(this.bullets.indexOf(c), 1); 
                         this.meteors.splice(this.meteors.indexOf(e), 1); 
 
@@ -58,7 +56,7 @@ class Game {
         requestAnimationFrame(() => this.gameLoop());
     
     }   
-    
+
        private creatingMeteor(){
         for(let i = 0; i<5; i++){   
             let position = Math.floor((Math.random() * window.innerWidth) + 1);
