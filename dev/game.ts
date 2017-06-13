@@ -15,7 +15,7 @@ class Game {
 
 
     constructor() {
-
+        console.log(window.innerWidth);
         //creating spaceship
         this.spaceship = new playerShip(this);
         // this.test = new test();      
@@ -98,8 +98,14 @@ class Game {
         let random = Math.floor((Math.random() * 5) + 2);
         for (let i = 0; i < random; i++) {
             let position = Math.floor((Math.random() * window.innerWidth) + 1);
-            this.astroid = new Astroid(position, this);
-            this.meteors.push(this.astroid);
+            if(position > 1400){
+                position = 1300;
+                this.astroid = new Astroid(position, this);
+                this.meteors.push(this.astroid);
+            }else{
+                this.astroid = new Astroid(position, this);
+                this.meteors.push(this.astroid);
+            }
             // position+=random;
         }
     }
@@ -111,8 +117,14 @@ class Game {
 
             x+=randomPositionX;
             y+=randomPositionY;
-            this.miniMeteors = new miniAstroid(x, y, this);
-            this.miniAstroid.push(this.miniMeteors);
+            if(x > 1400){
+                x=1300;
+                this.miniMeteors = new miniAstroid(x, y, this);
+                this.miniAstroid.push(this.miniMeteors);
+            }else{
+                this.miniMeteors = new miniAstroid(x, y, this);
+                this.miniAstroid.push(this.miniMeteors);
+            }
         }
     }
     private scoreBoard() {

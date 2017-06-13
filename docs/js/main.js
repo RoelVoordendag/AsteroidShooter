@@ -12,7 +12,6 @@ var character = (function () {
     function character(div, x, y, game) {
         this._div = document.createElement(div);
         document.body.appendChild(this._div);
-        console.log(this._div);
         this._div.style.transform = "translate(" + x + "px," + y + "px)";
         this.speed = Math.random() * 1 + 1;
         this.game = game;
@@ -49,12 +48,6 @@ var playerShip = (function (_super) {
     __extends(playerShip, _super);
     function playerShip(game) {
         var _this = _super.call(this, a, x, y, game) || this;
-        _this.upKey = 87;
-        _this.upKeyHitn = false;
-        _this.upSpeed = 0;
-        _this.downKey = 83;
-        _this.downKeyHit = false;
-        _this.downSpeed = 0;
         _this.leftKey = 65;
         _this.leftKeyHit = false;
         _this.leftSpeed = 0;
@@ -79,20 +72,6 @@ var playerShip = (function (_super) {
     playerShip.prototype.move = function () {
         var rect = this._div.getBoundingClientRect();
         this.rect = rect.bottom;
-        if (this.posY < 0) {
-            this.upSpeed = 0;
-        }
-        else {
-            this.posY -= this.upSpeed;
-            this._div.style.transform = "translate(" + this.posX + "px," + this.posY + "px)";
-        }
-        if (this.posY > 520) {
-            this.downSpeed = 0;
-        }
-        else {
-            this.posY += this.downSpeed;
-            this._div.style.transform = "translate(" + this.posX + "px," + this.posY + "px)";
-        }
         if (this.posX < 1) {
             this.leftSpeed = 0;
         }
@@ -100,31 +79,16 @@ var playerShip = (function (_super) {
             this.posX -= this.leftSpeed;
             this._div.style.transform = "translate(" + this.posX + "vw," + this.posY + "vh)";
         }
-        if (this.posX > 95) {
+        if (this.posX > 91) {
             this.rightSpeed = 0;
         }
         else {
             this.posX += this.rightSpeed;
             this._div.style.transform = "translate(" + this.posX + "vw," + this.posY + "vh)";
         }
-        if (this.rect > innerHeight - 20) {
-            this.downSpeed = 0;
-            console.log(innerHeight);
-        }
     };
     playerShip.prototype.onKeyDown = function (event) {
         switch (event.keyCode) {
-            case this.upKey:
-                this.upSpeed = 1;
-                this._div.style.backgroundPositionX = "px";
-                break;
-            case this.downKey:
-                this.downSpeed = 1;
-                this._div.style.backgroundPositionX = "-px";
-                if (this.rect > innerHeight - 20) {
-                    this.downSpeed = 0;
-                }
-                break;
             case this.leftKey:
                 this.leftSpeed = 1;
                 this._div.style.backgroundPositionX = "-px";
@@ -138,7 +102,7 @@ var playerShip = (function (_super) {
         }
     };
     playerShip.prototype.onKeyUp = function (event) {
-        this.upSpeed = this.downSpeed = this.leftSpeed = this.rightSpeed = 0;
+        this.leftSpeed = this.rightSpeed = 0;
     };
     return playerShip;
 }(character));
@@ -158,6 +122,7 @@ var Game = (function () {
         this.miniAstroid = new Array();
         this.bullets = new Array();
         this.meteors = new Array();
+        console.log(window.innerWidth);
         this.spaceship = new playerShip(this);
         console.log('hello darkness my old friend');
         this.creatingMeteor();
@@ -226,8 +191,15 @@ var Game = (function () {
         var random = Math.floor((Math.random() * 5) + 2);
         for (var i = 0; i < random; i++) {
             var position = Math.floor((Math.random() * window.innerWidth) + 1);
-            this.astroid = new Astroid(position, this);
-            this.meteors.push(this.astroid);
+            if (position > 1400) {
+                position = 1300;
+                this.astroid = new Astroid(position, this);
+                this.meteors.push(this.astroid);
+            }
+            else {
+                this.astroid = new Astroid(position, this);
+                this.meteors.push(this.astroid);
+            }
         }
     };
     Game.prototype.createMiniMeteors = function (x, y) {
@@ -236,8 +208,15 @@ var Game = (function () {
             var randomPositionY = Math.floor((Math.random() * 100) - 50);
             x += randomPositionX;
             y += randomPositionY;
-            this.miniMeteors = new miniAstroid(x, y, this);
-            this.miniAstroid.push(this.miniMeteors);
+            if (x > 1400) {
+                x = 1300;
+                this.miniMeteors = new miniAstroid(x, y, this);
+                this.miniAstroid.push(this.miniMeteors);
+            }
+            else {
+                this.miniMeteors = new miniAstroid(x, y, this);
+                this.miniAstroid.push(this.miniMeteors);
+            }
         }
     };
     Game.prototype.scoreBoard = function () {

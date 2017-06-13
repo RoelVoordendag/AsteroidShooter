@@ -10,7 +10,6 @@ class character {
         //creating div
         this._div = document.createElement(div);
         document.body.appendChild(this._div);
-        console.log(this._div);
         //placing div
         this._div.style.transform = "translate(" + x + "px," + y + "px)";
         this.speed = Math.random() * 1 + 1;
