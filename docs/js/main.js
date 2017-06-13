@@ -208,7 +208,7 @@ var Game = (function () {
         requestAnimationFrame(function () { return _this.gameLoop(); });
     };
     Game.prototype.creatingMeteor = function () {
-        var random = Math.floor((Math.random() * 8) + 2);
+        var random = Math.floor((Math.random() * 7) + 2);
         for (var i = 0; i < random; i++) {
             var position = Math.floor((Math.random() * window.innerWidth) + 1);
             this.astroid = new Astroid(position, this);
@@ -217,6 +217,9 @@ var Game = (function () {
     };
     Game.prototype.createMiniMeteors = function (x, y) {
         for (var i = 0; i < 2; i++) {
+            var randomPosition = Math.floor((Math.random() * 100) + 30);
+            x += randomPosition;
+            x += randomPosition;
             this.miniMeteors = new miniAstroid(x, y, this);
             this.miniAstroid.push(this.miniMeteors);
         }

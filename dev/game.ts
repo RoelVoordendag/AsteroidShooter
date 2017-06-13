@@ -79,7 +79,7 @@ class Game {
     }
 
     private creatingMeteor() {
-        let random = Math.floor((Math.random() * 8) + 2);
+        let random = Math.floor((Math.random() * 7) + 2);
         for (let i = 0; i < random; i++) {
             let position = Math.floor((Math.random() * window.innerWidth) + 1);
             this.astroid = new Astroid(position, this);
@@ -89,8 +89,12 @@ class Game {
     }
     private createMiniMeteors(x:number, y:number){
         for(let i = 0;  i<2; i++){
+            let randomPosition = Math.floor((Math.random() * 100) + 30);
+            x+=randomPosition;
+            x+=randomPosition;
             this.miniMeteors = new miniAstroid(x, y, this);
             this.miniAstroid.push(this.miniMeteors);
+
 
         }
     }
