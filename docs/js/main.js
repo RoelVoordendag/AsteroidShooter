@@ -293,7 +293,7 @@ var startScreen = (function () {
         this.title.innerHTML = 'Welkom to the best Asteroid Shooter';
         this.text = document.createElement('text');
         document.body.appendChild(this.text);
-        this.text.innerHTML = 'Schiet de Asteroid en hou het het lang zo mogelijk vol. Wanner een Asteroid de onderkant van je scherm aanraakt ben je af. Probeer een hoge score te krijgen';
+        this.text.innerHTML = 'Schiet de Asteroid en hou het het lang zo mogelijk vol. Wanneer een Asteroid de onderkant van je scherm aanraakt ben je af. Probeer een hoge score te krijgen';
         this.button = document.createElement('playButton');
         document.body.appendChild(this.button);
         this.button.innerHTML = 'Spelen!';
