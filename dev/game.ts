@@ -72,8 +72,20 @@ class Game {
                     
                     this.scoreBoard();
                 }
-            }
+            }   
         }
+        for (let b of this.bullets) {
+            for (let mm of this.miniAstroid) {
+                if (b.x < mm.x + 100 &&
+                    b.x + 30 > mm.x &&
+                    b.y < mm.y + 100 &&
+                    30 + b.y > mm.y) {
+                    this.bullets.splice(this.bullets.indexOf(b), 1);
+                    this.meteors.splice(this.meteors.indexOf(mm), 1);
+                    console.log('g]hallo');
+                }
+            }
+        } 
         requestAnimationFrame(() => this.gameLoop());
 
     }

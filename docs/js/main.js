@@ -205,6 +205,20 @@ var Game = (function () {
                 }
             }
         }
+        for (var _k = 0, _l = this.bullets; _k < _l.length; _k++) {
+            var b = _l[_k];
+            for (var _m = 0, _o = this.miniAstroid; _m < _o.length; _m++) {
+                var mm = _o[_m];
+                if (b.x < mm.x + 100 &&
+                    b.x + 30 > mm.x &&
+                    b.y < mm.y + 100 &&
+                    30 + b.y > mm.y) {
+                    this.bullets.splice(this.bullets.indexOf(b), 1);
+                    this.meteors.splice(this.meteors.indexOf(mm), 1);
+                    console.log('g]hallo');
+                }
+            }
+        }
         requestAnimationFrame(function () { return _this.gameLoop(); });
     };
     Game.prototype.creatingMeteor = function () {
