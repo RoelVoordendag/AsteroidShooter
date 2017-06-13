@@ -75,7 +75,6 @@ class Game {
             let position = Math.floor((Math.random() * window.innerWidth) + 1);
             this.astroid = new Astroid(position, this);
             this.meteors.push(this.astroid);
-
             // position+=random;
         }
     }

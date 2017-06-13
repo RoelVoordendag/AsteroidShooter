@@ -2,10 +2,8 @@
 School Game
 
 wat nog te doen
-   
-   
-    -mini meteoren(1-2 uur)
-    -endscreen
+        -mini meteoren(1-2 uur)
+        -endscreen
     Hiernaast nog een intro scherm gemaakt en een idee uitgedacht voor het eindscore game
     ...
     -uml maken(1 uur)
