@@ -21,7 +21,7 @@ var character = (function () {
     character.prototype.move = function () {
         this.y += this.speed;
         this._div.style.transform = "translate(" + this.x + "px, " + this.y + "px)";
-        if (this.y > window.innerHeight - 120) {
+        if (this.y > window.innerHeight - 150) {
             this._div.remove();
         }
     };
@@ -77,6 +77,7 @@ var playerShip = (function (_super) {
     }
     playerShip.prototype.move = function () {
         var rect = this._div.getBoundingClientRect();
+        this.rect = rect.bottom;
         if (this.posY < 0) {
             this.upSpeed = 0;
         }
@@ -105,8 +106,9 @@ var playerShip = (function (_super) {
             this.posX += this.rightSpeed;
             this._div.style.transform = "translate(" + this.posX + "vw," + this.posY + "vh)";
         }
-        if (rect.bottom > innerHeight) {
+        if (this.rect > innerHeight - 20) {
             this.downSpeed = 0;
+            console.log(innerHeight);
         }
     };
     playerShip.prototype.onKeyDown = function (event) {
@@ -118,6 +120,9 @@ var playerShip = (function (_super) {
             case this.downKey:
                 this.downSpeed = 1;
                 this._div.style.backgroundPositionX = "-px";
+                if (this.rect > innerHeight - 20) {
+                    this.downSpeed = 0;
+                }
                 break;
             case this.leftKey:
                 this.leftSpeed = 1;

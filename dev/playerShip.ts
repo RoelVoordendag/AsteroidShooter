@@ -28,6 +28,8 @@ class playerShip extends character{
     private gun: Gun;
     private astroid:Astroid;
 
+    private rect:number;
+
     
 
     constructor(game:Game){
@@ -51,15 +53,17 @@ class playerShip extends character{
 
         window.addEventListener("keydown", (e:KeyboardEvent) => this.onKeyDown(e));
         window.addEventListener("keyup", (e:KeyboardEvent) => this.onKeyUp(e));
+        
 
     }
 
     // moet naar game
  
     
-    public move(){
+    public move(){    
+        
         let rect:ClientRect = this._div.getBoundingClientRect()
-     
+        this.rect = rect.bottom; 
         // up movement
         if(this.posY < 0){
             this.upSpeed = 0;
@@ -88,8 +92,9 @@ class playerShip extends character{
             this.posX += this.rightSpeed;
             this._div.style.transform = "translate("+this.posX+"vw,"+this.posY+"vh)";
         }
-        if(rect.bottom > innerHeight){
+        if(this.rect > innerHeight - 20){
             this.downSpeed = 0;
+            console.log(innerHeight);
         }
     }
 
@@ -102,6 +107,9 @@ class playerShip extends character{
         case this.downKey:
             this.downSpeed = 1;
             this._div.style.backgroundPositionX = "-px";
+            if(this.rect > innerHeight - 20){
+                this.downSpeed = 0;
+            }
             break;
         case this.leftKey:
             this.leftSpeed = 1;

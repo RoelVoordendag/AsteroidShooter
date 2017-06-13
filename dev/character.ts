@@ -24,7 +24,7 @@ class character {
     public move() {
         this.y += this.speed;
         this._div.style.transform = "translate(" + this.x + "px, " + this.y + "px)";
-        if (this.y > window.innerHeight - 120) {
+        if (this.y > window.innerHeight - 150) {
             this._div.remove();
         }
     }
