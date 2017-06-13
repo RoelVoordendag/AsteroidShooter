@@ -28,5 +28,8 @@ class character {
         if (this.y > window.innerHeight - 150) {
             this._div.remove();
         }
+    }   
+    public removeAsteroidDiv() {
+        this._div.remove();
     }
 }

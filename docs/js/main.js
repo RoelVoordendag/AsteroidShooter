@@ -26,6 +26,9 @@ var character = (function () {
             this._div.remove();
         }
     };
+    character.prototype.removeAsteroidDiv = function () {
+        this._div.remove();
+    };
     return character;
 }());
 var Astroid = (function (_super) {
@@ -40,9 +43,6 @@ var Astroid = (function (_super) {
         _this.game = game;
         return _this;
     }
-    Astroid.prototype.removeAsteroidDiv = function () {
-        this._div.remove();
-    };
     return Astroid;
 }(character));
 var playerShip = (function (_super) {
@@ -200,29 +200,30 @@ var Game = (function () {
                     b.removeBulletDiv();
                     m.removeAsteroidDiv();
                     this.createMiniMeteors(m.x, m.y);
-                    console.log(m.x);
                     this.scoreBoard();
                 }
             }
         }
-        for (var _k = 0, _l = this.bullets; _k < _l.length; _k++) {
-            var b = _l[_k];
-            for (var _m = 0, _o = this.miniAstroid; _m < _o.length; _m++) {
-                var mm = _o[_m];
-                if (b.x < mm.x + 100 &&
+        for (var _k = 0, _l = this.miniAstroid; _k < _l.length; _k++) {
+            var mm = _l[_k];
+            for (var _m = 0, _o = this.bullets; _m < _o.length; _m++) {
+                var b = _o[_m];
+                if (b.x < mm.x + 30 &&
                     b.x + 30 > mm.x &&
-                    b.y < mm.y + 100 &&
+                    b.y < mm.y + 30 &&
                     30 + b.y > mm.y) {
                     this.bullets.splice(this.bullets.indexOf(b), 1);
-                    this.meteors.splice(this.meteors.indexOf(mm), 1);
-                    console.log('g]hallo');
+                    this.miniAstroid.splice(this.miniAstroid.indexOf(mm), 1);
+                    b.removeBulletDiv();
+                    mm.removeAsteroidDiv();
+                    this.scoreBoard();
                 }
             }
         }
         requestAnimationFrame(function () { return _this.gameLoop(); });
     };
     Game.prototype.creatingMeteor = function () {
-        var random = Math.floor((Math.random() * 7) + 2);
+        var random = Math.floor((Math.random() * 5) + 2);
         for (var i = 0; i < random; i++) {
             var position = Math.floor((Math.random() * window.innerWidth) + 1);
             this.astroid = new Astroid(position, this);
@@ -231,9 +232,10 @@ var Game = (function () {
     };
     Game.prototype.createMiniMeteors = function (x, y) {
         for (var i = 0; i < 2; i++) {
-            var randomPosition = Math.floor((Math.random() * 100) + 30);
-            x += randomPosition;
-            x += randomPosition;
+            var randomPositionX = Math.floor((Math.random() * 200) - 100);
+            var randomPositionY = Math.floor((Math.random() * 100) - 50);
+            x += randomPositionX;
+            y += randomPositionY;
             this.miniMeteors = new miniAstroid(x, y, this);
             this.miniAstroid.push(this.miniMeteors);
         }

@@ -1,7 +1,5 @@
 ///<reference path= 'character.ts'/>
 class Astroid extends character {
-    private posX: number;
-    private posy: number;
     public game: Game;
 
     constructor(x: number, game: Game) {
@@ -14,8 +12,5 @@ class Astroid extends character {
         this.game = game
 
 
-    }
-    removeAsteroidDiv() {
-        this._div.remove();
     }
 }
