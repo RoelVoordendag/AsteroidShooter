@@ -12,6 +12,7 @@ var character = (function () {
     function character(div, x, y, game) {
         this._div = document.createElement(div);
         document.body.appendChild(this._div);
+        console.log(this._div);
         this._div.style.transform = "translate(" + x + "px," + y + "px)";
         this.speed = Math.random() * 1 + 1;
         this.game = game;
@@ -154,6 +155,7 @@ var scoreBoard = (function () {
 var Game = (function () {
     function Game() {
         var _this = this;
+        this.miniAstroid = new Array();
         this.bullets = new Array();
         this.meteors = new Array();
         this.spaceship = new playerShip(this);
@@ -177,22 +179,28 @@ var Game = (function () {
             var b = _a[_i];
             b.move();
         }
-        for (var _b = 0, _c = this.meteors; _b < _c.length; _b++) {
-            var m = _c[_b];
+        for (var _b = 0, _c = this.miniAstroid; _b < _c.length; _b++) {
+            var mm = _c[_b];
+            mm.move();
+        }
+        for (var _d = 0, _e = this.meteors; _d < _e.length; _d++) {
+            var m = _e[_d];
             m.move();
         }
-        for (var _d = 0, _e = this.bullets; _d < _e.length; _d++) {
-            var c = _e[_d];
-            for (var _f = 0, _g = this.meteors; _f < _g.length; _f++) {
-                var e = _g[_f];
-                if (c.x < e.x + 100 &&
-                    c.x + 30 > e.x &&
-                    c.y < e.y + 100 &&
-                    30 + c.y > e.y) {
-                    this.bullets.splice(this.bullets.indexOf(c), 1);
-                    this.meteors.splice(this.meteors.indexOf(e), 1);
-                    c.removeBulletDiv();
-                    e.removeAsteroidDiv();
+        for (var _f = 0, _g = this.bullets; _f < _g.length; _f++) {
+            var b = _g[_f];
+            for (var _h = 0, _j = this.meteors; _h < _j.length; _h++) {
+                var m = _j[_h];
+                if (b.x < m.x + 100 &&
+                    b.x + 30 > m.x &&
+                    b.y < m.y + 100 &&
+                    30 + b.y > m.y) {
+                    this.bullets.splice(this.bullets.indexOf(b), 1);
+                    this.meteors.splice(this.meteors.indexOf(m), 1);
+                    b.removeBulletDiv();
+                    m.removeAsteroidDiv();
+                    this.createMiniMeteors(m.x, m.y);
+                    console.log(m.x);
                     this.scoreBoard();
                 }
             }
@@ -205,6 +213,12 @@ var Game = (function () {
             var position = Math.floor((Math.random() * window.innerWidth) + 1);
             this.astroid = new Astroid(position, this);
             this.meteors.push(this.astroid);
+        }
+    };
+    Game.prototype.createMiniMeteors = function (x, y) {
+        for (var i = 0; i < 2; i++) {
+            this.miniMeteors = new miniAstroid(x, y, this);
+            this.miniAstroid.push(this.miniMeteors);
         }
     };
     Game.prototype.scoreBoard = function () {
@@ -259,6 +273,20 @@ var Gun = (function () {
 window.addEventListener("load", function () {
     new startScreen();
 });
+var miniAstroid = (function (_super) {
+    __extends(miniAstroid, _super);
+    function miniAstroid(x, y, game) {
+        var _this = this;
+        var a = 'miniMeteor';
+        var b = x;
+        var c = y;
+        _this = _super.call(this, a, b, c, game) || this;
+        _this.game = game;
+        _this.move();
+        return _this;
+    }
+    return miniAstroid;
+}(character));
 var startScreen = (function () {
     function startScreen() {
         var _this = this;

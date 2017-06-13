@@ -3,9 +3,11 @@
 
 class Game {
     public spaceship: playerShip;
+    private miniAstroid: Array<miniAstroid> = new Array<miniAstroid>();
+    private miniMeteors: miniAstroid;
     public bullets: Array<Bullet> = new Array<Bullet>();
-    private astroid: Astroid;
     public meteors: Array<Astroid> = new Array<Astroid>();
+    private astroid: Astroid;
     private bullet: Bullet;
     public score: number;
     private div:HTMLElement;
@@ -44,23 +46,30 @@ class Game {
         for (let b of this.bullets) {
             b.move();
         }
+        for(let mm of this.miniAstroid){
+            mm.move();
+        }
         for (let m of this.meteors) {
             m.move();
             // m.hitMeteor();\\
         }
-        for (let c of this.bullets) {
-            for (let e of this.meteors) {
-                if (c.x < e.x + 100 &&
-                    c.x + 30 > e.x &&
-                    c.y < e.y + 100 &&
-                    30 + c.y > e.y) {
-                    this.bullets.splice(this.bullets.indexOf(c), 1);
-                    this.meteors.splice(this.meteors.indexOf(e), 1);
+        for (let b of this.bullets) {
+            for (let m of this.meteors) {
+                if (b.x < m.x + 100 &&
+                    b.x + 30 > m.x &&
+                    b.y < m.y + 100 &&
+                    30 + b.y > m.y) {
+                    this.bullets.splice(this.bullets.indexOf(b), 1);
+                    this.meteors.splice(this.meteors.indexOf(m), 1);
+                    
+                    b.removeBulletDiv();
 
-                    c.removeBulletDiv();
+                    m.removeAsteroidDiv();
 
-                    e.removeAsteroidDiv();
+                    this.createMiniMeteors(m.x, m.y);
 
+                    console.log(m.x);   
+                    
                     this.scoreBoard();
                 }
             }
@@ -76,6 +85,13 @@ class Game {
             this.astroid = new Astroid(position, this);
             this.meteors.push(this.astroid);
             // position+=random;
+        }
+    }
+    private createMiniMeteors(x:number, y:number){
+        for(let i = 0;  i<2; i++){
+            this.miniMeteors = new miniAstroid(x, y, this);
+            this.miniAstroid.push(this.miniMeteors);
+
         }
     }
     private scoreBoard() {
