@@ -17,16 +17,22 @@ var character = (function () {
         this.game = game;
         this.x = x;
         this.y = y;
+        this.remove = 0;
     }
     character.prototype.move = function () {
         this.y += this.speed;
         this._div.style.transform = "translate(" + this.x + "px, " + this.y + "px)";
         if (this.y > window.innerHeight - 150) {
             this._div.remove();
+            this.endScreenStarter();
         }
     };
     character.prototype.removeAsteroidDiv = function () {
         this._div.remove();
+    };
+    character.prototype.endScreenStarter = function () {
+        this.game.div.remove();
+        this.endScreen = new endScreen(this.game);
     };
     return character;
 }());
@@ -122,9 +128,9 @@ var Game = (function () {
         this.miniAstroid = new Array();
         this.bullets = new Array();
         this.meteors = new Array();
+        this.test = 0;
         console.log(window.innerWidth);
         this.spaceship = new playerShip(this);
-        console.log('hello darkness my old friend');
         this.creatingMeteor();
         requestAnimationFrame(function () { return _this.gameLoop(); });
         setInterval(function () { return _this.creatingMeteor(); }, 3000);
@@ -132,7 +138,6 @@ var Game = (function () {
         this.div = document.createElement('score');
         document.body.appendChild(this.div);
         this.div.innerHTML = 'Score:' + this.score;
-        this.lives = 3;
     }
     Game.prototype.addBullit = function (b) {
         this.bullets.push(b);
@@ -251,8 +256,11 @@ var Bullet = (function () {
     return Bullet;
 }());
 var endScreen = (function () {
-    function endScreen() {
-        console.log('game is over');
+    function endScreen(game) {
+        this.div = document.createElement('text-endgame');
+        document.body.appendChild(this.div);
+        this.game = game;
+        this.div.innerHTML = 'Je hebt een Meteor door laten gaan. Je hebt verloren dit is je eindscore ' + this.game.score + ' probeer het spel nog een keer te spelen.';
     }
     return endScreen;
 }());

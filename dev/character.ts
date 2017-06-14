@@ -5,6 +5,8 @@ class character {
     public y: number;
     private speed: number;
     public game:Game;
+    private endScreen:endScreen;
+    private remove:number;
 
     constructor(div: string, x: number, y: number, game:Game) {
         //creating div
@@ -19,6 +21,7 @@ class character {
         this.x = x;
         this.y = y;
 
+        this.remove = 0;
 
     }
     public move() {
@@ -26,9 +29,15 @@ class character {
         this._div.style.transform = "translate(" + this.x + "px, " + this.y + "px)";
         if (this.y > window.innerHeight - 150) {
             this._div.remove();
+            this.endScreenStarter();    
         }
+        
     }   
     public removeAsteroidDiv() {
         this._div.remove();
+    }
+    public endScreenStarter(){
+        this.game.div.remove();
+        this.endScreen = new endScreen(this.game);
     }
 }

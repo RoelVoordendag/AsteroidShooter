@@ -66,3 +66,33 @@ miniMeteor{
     background-image: url('../images/asteroid/meteorsmall.png');
     width: 30px;  height: 30px;
 }
+lifes{
+    left:92%; top: 0%;
+    font-size: 32px;
+    font-weight: lighter;
+    color:white;
+}
+text-endgame{
+    left:calc(51% - 400px);
+    top:calc(35% - 100px);
+    width:800px; height:380px;
+    padding:20px;
+    font-size:60px;
+    text-align: center;
+    overflow: hidden;
+    color:white;
+
+}
+restartButton{
+
+    left:calc(51% - 400px);
+    top:calc(80% - 100px);
+    width:800px; height:100px;
+    padding:20px;
+    font-size:80px;
+    font-weight: bold;
+    text-align: center;
+    overflow: hidden;
+    color:white;
+
+}

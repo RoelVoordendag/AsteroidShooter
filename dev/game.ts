@@ -10,16 +10,17 @@ class Game {
     private astroid: Astroid;
     private bullet: Bullet;
     public score: number;
-    private div:HTMLElement;
-    public lives: number;
+    public div:HTMLElement;
+    private character:character;
+    public test:number;
 
 
     constructor() {
+        this.test = 0;
         console.log(window.innerWidth);
         //creating spaceship
         this.spaceship = new playerShip(this);
         // this.test = new test();      
-        console.log('hello darkness my old friend');
         this.creatingMeteor();
         //making the animation 60 fps
         requestAnimationFrame(() => this.gameLoop());
@@ -32,11 +33,9 @@ class Game {
         document.body.appendChild(this.div); 
         this.div.innerHTML = 'Score:' + this.score;
         //giving total of lives
-        this.lives = 3;
     }
     public addBullit(b: Bullet) {
         this.bullets.push(b);
-
     }
 
     gameLoop() {
@@ -89,7 +88,7 @@ class Game {
                     this.scoreBoard();
                 }
             }
-        } 
+        }
         requestAnimationFrame(() => this.gameLoop());
 
     }
@@ -130,8 +129,7 @@ class Game {
     private scoreBoard() {
         this.score  += 1;
         this.div.innerHTML= 'Score:' + this.score;
-
-
     }
 }
+
 

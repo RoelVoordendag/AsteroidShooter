@@ -1,4 +1,3 @@
-///<reference path= 'character.ts'/>
 class playerShip extends character{
     
     private spaceship:HTMLElement;
