@@ -50,8 +50,8 @@ class Game {
         }
         for (let m of this.meteors) {
             m.move();
-            // m.hitMeteor();\\
         }
+        //collision between big meteors and bullets
         for (let b of this.bullets) {
             for (let m of this.meteors) {
                 if (b.x < m.x + 100 &&
@@ -71,6 +71,7 @@ class Game {
                 }
             }   
         }
+        //checking collision between mini asteroids and bullets
          for (let mm of this.miniAstroid) {
             for (let b of this.bullets) {
                 if (b.x < mm.x + 30 &&
@@ -116,6 +117,7 @@ class Game {
 
             x+=randomPositionX;
             y+=randomPositionY;
+            //checking if meteor does not spanw out of screen
             if(x > 1400){
                 x=1300;
                 this.miniMeteors = new miniAstroid(x, y, this);
