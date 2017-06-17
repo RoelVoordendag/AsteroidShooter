@@ -48,6 +48,25 @@ var Astroid = (function (_super) {
         _this.game = game;
         return _this;
     }
+    Astroid.prototype.collision = function () {
+        for (var _i = 0, _a = this.game.meteors; _i < _a.length; _i++) {
+            var m = _a[_i];
+            for (var _b = 0, _c = this.game.bullets; _b < _c.length; _b++) {
+                var b = _c[_b];
+                if (b.x < m.x + 100 &&
+                    b.x + 30 > m.x &&
+                    b.y < m.y + 100 &&
+                    30 + b.y > m.y) {
+                    this.game.bullets.splice(this.game.bullets.indexOf(b), 1);
+                    this.game.meteors.splice(this.game.meteors.indexOf(m), 1);
+                    b.removeBulletDiv();
+                    m.removeAsteroidDiv();
+                    this.game.createMiniMeteors(m.x, m.y);
+                    this.game.scoreBoard();
+                }
+            }
+        }
+    };
     return Astroid;
 }(character));
 var playerShip = (function (_super) {
@@ -112,24 +131,12 @@ var playerShip = (function (_super) {
     };
     return playerShip;
 }(character));
-var scoreBoard = (function () {
-    function scoreBoard() {
-        this.div = document.createElement('clock');
-        document.body.appendChild(this.div);
-    }
-    scoreBoard.prototype.scoreBoard = function () {
-        console.log('hello darkness');
-    };
-    return scoreBoard;
-}());
 var Game = (function () {
     function Game() {
         var _this = this;
-        this.miniAstroid = new Array();
         this.bullets = new Array();
         this.meteors = new Array();
-        this.test = 0;
-        console.log(window.innerWidth);
+        this.miniAstroid = new Array();
         this.spaceship = new playerShip(this);
         this.creatingMeteor();
         requestAnimationFrame(function () { return _this.gameLoop(); });
@@ -145,39 +152,23 @@ var Game = (function () {
     Game.prototype.gameLoop = function () {
         var _this = this;
         this.spaceship.move();
-        for (var _i = 0, _a = this.bullets; _i < _a.length; _i++) {
-            var b = _a[_i];
-            b.move();
-        }
-        for (var _b = 0, _c = this.miniAstroid; _b < _c.length; _b++) {
-            var mm = _c[_b];
+        this.astroid.collision();
+        for (var _i = 0, _a = this.miniAstroid; _i < _a.length; _i++) {
+            var mm = _a[_i];
             mm.move();
+        }
+        for (var _b = 0, _c = this.bullets; _b < _c.length; _b++) {
+            var b = _c[_b];
+            b.move();
         }
         for (var _d = 0, _e = this.meteors; _d < _e.length; _d++) {
             var m = _e[_d];
             m.move();
         }
-        for (var _f = 0, _g = this.bullets; _f < _g.length; _f++) {
-            var b = _g[_f];
-            for (var _h = 0, _j = this.meteors; _h < _j.length; _h++) {
-                var m = _j[_h];
-                if (b.x < m.x + 100 &&
-                    b.x + 30 > m.x &&
-                    b.y < m.y + 100 &&
-                    30 + b.y > m.y) {
-                    this.bullets.splice(this.bullets.indexOf(b), 1);
-                    this.meteors.splice(this.meteors.indexOf(m), 1);
-                    b.removeBulletDiv();
-                    m.removeAsteroidDiv();
-                    this.createMiniMeteors(m.x, m.y);
-                    this.scoreBoard();
-                }
-            }
-        }
-        for (var _k = 0, _l = this.miniAstroid; _k < _l.length; _k++) {
-            var mm = _l[_k];
-            for (var _m = 0, _o = this.bullets; _m < _o.length; _m++) {
-                var b = _o[_m];
+        for (var _f = 0, _g = this.miniAstroid; _f < _g.length; _f++) {
+            var mm = _g[_f];
+            for (var _h = 0, _j = this.bullets; _h < _j.length; _h++) {
+                var b = _j[_h];
                 if (b.x < mm.x + 30 &&
                     b.x + 30 > mm.x &&
                     b.y < mm.y + 30 &&
@@ -221,6 +212,7 @@ var Game = (function () {
             else {
                 this.miniMeteors = new miniAstroid(x, y, this);
                 this.miniAstroid.push(this.miniMeteors);
+                this.miniMeteors;
             }
         }
     };
@@ -260,7 +252,7 @@ var endScreen = (function () {
         this.div = document.createElement('text-endgame');
         document.body.appendChild(this.div);
         this.game = game;
-        this.div.innerHTML = 'Je hebt een Meteor door laten gaan. Je hebt verloren dit is je eindscore ' + this.game.score + ' probeer het spel nog een keer te spelen.';
+        this.div.innerHTML = 'Je hebt een Meteor door laten gaan. Je hebt verloren dit is je eindscore ' + this.game.score + ' probeer het spel nog een keer te spelen. Druk op control+f5/command+f5 om nog een keer te spelen!';
     }
     return endScreen;
 }());
