@@ -9,11 +9,13 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 var character = (function () {
-    function character(div, x, y, game) {
+    function character(div, x, y, heigt, width, game) {
         this._div = document.createElement(div);
         document.body.appendChild(this._div);
         this._div.style.transform = "translate(" + x + "px," + y + "px)";
         this.speed = Math.random() * 1 + 1;
+        this.height = heigt;
+        this.width = width;
         this.game = game;
         this.x = x;
         this.y = y;
@@ -44,7 +46,9 @@ var Astroid = (function (_super) {
         var a = 'asteroid';
         var b = x;
         var c = -100;
-        _this = _super.call(this, a, b, c, game) || this;
+        var height = 80;
+        var width = 100;
+        _this = _super.call(this, a, b, c, height, width, game) || this;
         _this.move();
         _this.game = game;
         return _this;
@@ -54,10 +58,10 @@ var Astroid = (function (_super) {
             var m = _a[_i];
             for (var _b = 0, _c = this.game.bullets; _b < _c.length; _b++) {
                 var b = _c[_b];
-                if (b.x < m.x + 100 &&
-                    b.x + 30 > m.x &&
-                    b.y < m.y + 100 &&
-                    30 + b.y > m.y) {
+                if (b.x < m.x + this.width &&
+                    b.x + b.width > m.x &&
+                    b.y < m.y + this.height &&
+                    b.height + b.y > m.y) {
                     this.game.bullets.splice(this.game.bullets.indexOf(b), 1);
                     this.game.meteors.splice(this.game.meteors.indexOf(m), 1);
                     b.removeBulletDiv();
@@ -73,7 +77,7 @@ var Astroid = (function (_super) {
 var playerShip = (function (_super) {
     __extends(playerShip, _super);
     function playerShip(game) {
-        var _this = _super.call(this, a, x, y, game) || this;
+        var _this = _super.call(this, a, x, y, heigth, width, game) || this;
         _this.leftKey = 65;
         _this.leftKeyHit = false;
         _this.leftSpeed = 0;
@@ -85,7 +89,9 @@ var playerShip = (function (_super) {
         var a = 'spaceship';
         var x = 40;
         var y = 80;
-        _this = _super.call(this, a, x, y, game) || this;
+        var heigth = 100;
+        var width = 100;
+        _this = _super.call(this, a, x, y, heigth, width, game) || this;
         _this.game = game;
         _this.spaceship = _this._div;
         _this.gun = new Gun(_this.game, _this.spaceship);
@@ -171,9 +177,9 @@ var Game = (function () {
             for (var _h = 0, _j = this.bullets; _h < _j.length; _h++) {
                 var b = _j[_h];
                 if (b.x < mm.x + 30 &&
-                    b.x + 30 > mm.x &&
+                    b.x + b.width > mm.x &&
                     b.y < mm.y + 30 &&
-                    30 + b.y > mm.y) {
+                    b.height + b.y > mm.y) {
                     this.bullets.splice(this.bullets.indexOf(b), 1);
                     this.miniAstroid.splice(this.miniAstroid.indexOf(mm), 1);
                     b.removeBulletDiv();
@@ -225,8 +231,8 @@ var Game = (function () {
 }());
 var Bullet = (function () {
     function Bullet(x, y, game) {
-        this.width = 22;
-        this.height = 22;
+        this.width = 30;
+        this.height = 30;
         this.div = document.createElement("bullet");
         document.body.appendChild(this.div);
         this.x = x;
@@ -279,7 +285,9 @@ var miniAstroid = (function (_super) {
         var a = 'miniMeteor';
         var b = x;
         var c = y;
-        _this = _super.call(this, a, b, c, game) || this;
+        var heigth = 30;
+        var width = 30;
+        _this = _super.call(this, a, b, c, heigth, width, game) || this;
         _this.game = game;
         _this.move();
         return _this;

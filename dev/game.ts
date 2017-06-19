@@ -29,11 +29,11 @@ class Game {
         document.body.appendChild(this.div); 
         this.div.innerHTML = 'Score:' + this.score;
     }
-    public addBullit(b: Bullet) {
+    public addBullit(b: Bullet):void {
         this.bullets.push(b);
     }
 
-    gameLoop() {
+    gameLoop():void {
         this.spaceship.move();
         this.astroid.collision();
         for(let mm of this.miniAstroid){
@@ -51,9 +51,9 @@ class Game {
          for (let mm of this.miniAstroid) {
             for (let b of this.bullets) {
                 if (b.x < mm.x + 30 &&
-                    b.x + 30 > mm.x &&
+                    b.x + b.width > mm.x &&
                     b.y < mm.y + 30 &&
-                    30 + b.y > mm.y) {
+                    b.height + b.y > mm.y) {
 
                     this.bullets.splice(this.bullets.indexOf(b), 1);
                     this.miniAstroid.splice(this.miniAstroid.indexOf(mm), 1);
@@ -69,7 +69,7 @@ class Game {
         requestAnimationFrame(() => this.gameLoop());
 
     }
-    private creatingMeteor() {
+    private creatingMeteor():void {
         let random = Math.floor((Math.random() * 4) + 1);
         for (let i = 0; i < random; i++) {
             let position = Math.floor((Math.random() * window.innerWidth) + 1);
@@ -83,7 +83,7 @@ class Game {
             }
         }
     }
-    public createMiniMeteors(x:number, y:number){
+    public createMiniMeteors(x:number, y:number):void{
 
         for(let i = 0;  i<2; i++){
             let randomPositionX = Math.floor((Math.random() * 200) -100);
@@ -103,7 +103,7 @@ class Game {
             }
         }
     }
-    public scoreBoard() {
+    public scoreBoard():void {
         this.score  += 1;
         this.div.innerHTML= 'Score:' + this.score;
     }

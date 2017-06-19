@@ -7,8 +7,8 @@ class Bullet {
     private game: Game;
     public x: number;
     public y: number;
-    private width: number = 22;
-    private height: number = 22;
+    public width: number = 30;
+    public height: number = 30;
     private xspeed: number;
     private yspeed: number;
 
@@ -36,7 +36,7 @@ class Bullet {
             this.div.remove();
         }
     }
-    removeBulletDiv() {
+    public removeBulletDiv():void {
         this.div.remove();
 
     }

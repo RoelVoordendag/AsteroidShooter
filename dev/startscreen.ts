@@ -19,7 +19,7 @@ class startScreen {
         this.button.innerHTML = 'Spelen!';
         this.button.addEventListener("click", () => this.deleteAll());
     }
-    deleteAll() {
+    deleteAll():void {
         this.title.remove();
         this.title = undefined;
         this.text.remove();

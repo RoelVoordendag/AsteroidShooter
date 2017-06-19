@@ -24,13 +24,15 @@ class playerShip extends character{
     
 
     constructor(game:Game){
-        super(a,x,y, game);
+        super(a,x,y, heigth, width, game);
 
         //giving name to super to create and give placement    
         var a = 'spaceship';
         var x = 40;
         var y = 80;
-        super(a,x,y, game);
+        var heigth = 100;
+        var width = 100;
+        super(a,x,y,heigth, width, game);
 
         this.game = game;
         this.spaceship = this._div;
@@ -51,7 +53,7 @@ class playerShip extends character{
     // moet naar game
  
     
-    public move(){    
+    public move():void{    
         
         let rect:ClientRect = this._div.getBoundingClientRect()
         this.rect = rect.bottom; 

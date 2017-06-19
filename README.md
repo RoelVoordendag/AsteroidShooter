@@ -9,14 +9,21 @@ Toelichting Principes:
 
 Classes:
 
+Ik heb classes gebruikt om de verschillende soorten onderdleen voor de game te maken, de ckasses die ik heb zijn onder andere: game, playership, astroid en miniAstroid. 
+
 Instances:
+
+Een instance is het aanmaken van een class en dat doe ik vaker in mijn game om dingen te spawnen zoals bij game enz.
+
 
 Enscapulation:
 
-Met enscapulation gaaf je aan of sommige objecten in je class private of public zijn. Als een object private is kan hij niet worden aangepast buiten de class. Als een object public is kan hij wel worden aangepast buiten de class. Dit zorgt ervoor dat wanneer anderee mensen aan je code werken dat ze bepaalde dingen niet kunnen aanpassen als het niet mag. Ik heb dit gedaan bij objecten waarvan ik niet wil dat ze buiten mijn class worden gebruikt. Sommige dingen zoals score wil ik wel kunnen aanpassen via andere classen omdat score daar dan moet worden geupdate.
+Met enscapulation gaaf je aan of sommige objecten in je class private of public zijn. Als een object private is kan hij niet worden aangepast of bereikbaar zijn buiten de class. Als een object public is kan hij wel worden aangepast buiten de class. Dit zorgt ervoor dat wanneer anderee mensen aan je code werken dat ze bepaalde dingen niet kunnen aanpassen als het niet mag. Ik heb dit gedaan bij objecten waarvan ik niet wil dat ze buiten mijn class worden gebruikt. Sommige dingen zoals score wil ik wel kunnen aanpassen via andere classen omdat score daar dan moet worden geupdate.
 
 Composition:
 
-
+Met composition laat je door één instance te maken meerdere instances aan. Ik heb dit gedaan door wanneer playership wordt gemaakt dat er gun komt waarmee ik schiet. 
 
 Inheritence:
+
+Met inheritence geef je dingen door net zoals dat ik de move functio in character zo door geef aan astroid and mini meteor
