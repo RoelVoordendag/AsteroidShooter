@@ -315,7 +315,7 @@ var startScreen = (function () {
         this.text = undefined;
         this.button.remove();
         this.button = undefined;
-        new Game();
+        this.game = new Game();
     };
     return startScreen;
 }());

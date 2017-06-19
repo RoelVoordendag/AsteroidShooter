@@ -2,6 +2,7 @@ class startScreen {
     public button: HTMLElement;
     public title: HTMLElement;
     public text: HTMLElement;
+    private game:Game;
     constructor() {
         this.title = document.createElement('title');
         document.body.appendChild(this.title);
@@ -27,7 +28,7 @@ class startScreen {
         this.button.remove();
         this.button = undefined;
 
-        new Game();
+        this.game = new Game();
 
     }
 
