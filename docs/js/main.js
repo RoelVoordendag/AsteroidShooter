@@ -33,6 +33,7 @@ var character = (function () {
     character.prototype.endScreenStarter = function () {
         this.game.div.remove();
         this.endScreen = new endScreen(this.game);
+        this._div = undefined;
     };
     return character;
 }());

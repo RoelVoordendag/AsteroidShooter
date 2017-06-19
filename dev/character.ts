@@ -39,5 +39,6 @@ class character {
     public endScreenStarter(){
         this.game.div.remove();
         this.endScreen = new endScreen(this.game);
+        this._div = undefined;
     }
 }

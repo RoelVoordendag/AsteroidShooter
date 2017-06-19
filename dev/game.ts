@@ -7,7 +7,7 @@ class Game {
     private astroid: Astroid;
     private bullet: Bullet;
     public score: number;
-    private div:HTMLElement;
+    public div:HTMLElement;
     private character:character;
     private miniMeteors: miniAstroid;
     private miniAstroid: Array<miniAstroid> = new Array<miniAstroid>();
