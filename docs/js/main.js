@@ -19,7 +19,6 @@ var character = (function () {
         this.game = game;
         this.x = x;
         this.y = y;
-        this.remove = 0;
     }
     character.prototype.move = function () {
         this.y += this.speed;

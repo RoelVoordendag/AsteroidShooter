@@ -1,7 +1,7 @@
 /// <reference path="playerShip.ts"/>
 
 class Game {
-    public spaceship: playerShip;
+    private spaceship: playerShip;
     public bullets: Array<Bullet> = new Array<Bullet>();
     public meteors: Array<Astroid> = new Array<Astroid>();
     private astroid: Astroid;
@@ -33,7 +33,7 @@ class Game {
         this.bullets.push(b);
     }
 
-    gameLoop():void {
+    private gameLoop():void {
         this.spaceship.move();
         this.astroid.collision();
         for(let mm of this.miniAstroid){

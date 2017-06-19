@@ -17,7 +17,6 @@ class playerShip extends character{
 
     public game:Game;
     private gun: Gun;
-    private astroid:Astroid;
 
     private rect:number;
 
@@ -73,7 +72,7 @@ class playerShip extends character{
         }
     }
 
-     onKeyDown(event:KeyboardEvent):void {
+    private onKeyDown(event:KeyboardEvent):void {
         switch(event.keyCode){
         case this.leftKey:
             this.leftSpeed = 1;
@@ -89,7 +88,7 @@ class playerShip extends character{
         }
     }
         
-    onKeyUp(event:KeyboardEvent):void {
+    private onKeyUp(event:KeyboardEvent):void {
        this.leftSpeed = this.rightSpeed = 0;
     }
 

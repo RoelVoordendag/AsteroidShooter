@@ -3,10 +3,9 @@ class character {
     public _div: HTMLElement;
     public x: number;
     public y: number;
-    private speed: number;
+    protected speed: number;
     public game:Game;
     private endScreen:endScreen;
-    private remove:number;
     protected height:number;
     protected width:number;
 
@@ -25,11 +24,8 @@ class character {
 
         this.x = x;
         this.y = y;
-
-        this.remove = 0;
-
     }
-    public move():void {
+    protected move():void {
         this.y += this.speed;
         this._div.style.transform = "translate(" + this.x + "px, " + this.y + "px)";
         if (this.y > window.innerHeight - 150) {

@@ -11,8 +11,7 @@ class Gun   {
         
 }
     public fire(game:Game):void {
-        
-        
+          
         let rect:ClientRect = this.spaceship.getBoundingClientRect();      
     
         let b:Bullet = new Bullet(rect.left + 35 , rect.top - 50, this.game);

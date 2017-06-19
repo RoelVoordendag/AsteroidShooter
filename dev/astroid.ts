@@ -2,9 +2,6 @@
 class Astroid extends character {
     
     public game: Game;
-    
-
-
     constructor(x: number, game: Game) {
         let a = 'asteroid';
         let b = x;

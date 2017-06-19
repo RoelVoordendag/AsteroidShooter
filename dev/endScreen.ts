@@ -2,8 +2,7 @@ class endScreen{
 
     private div:HTMLElement;
     private game:Game;
-    private button:HTMLElement;
-
+    
     constructor(game:Game){
         this.div = document.createElement('text-endgame');
         document.body.appendChild(this.div);
