@@ -140,7 +140,7 @@ var Game = (function () {
         this.spaceship = new playerShip(this);
         this.creatingMeteor();
         requestAnimationFrame(function () { return _this.gameLoop(); });
-        setInterval(function () { return _this.creatingMeteor(); }, 3000);
+        setInterval(function () { return _this.creatingMeteor(); }, 3500);
         this.score = 0;
         this.div = document.createElement('score');
         document.body.appendChild(this.div);
@@ -184,7 +184,7 @@ var Game = (function () {
         requestAnimationFrame(function () { return _this.gameLoop(); });
     };
     Game.prototype.creatingMeteor = function () {
-        var random = Math.floor((Math.random() * 5) + 2);
+        var random = Math.floor((Math.random() * 4) + 1);
         for (var i = 0; i < random; i++) {
             var position = Math.floor((Math.random() * window.innerWidth) + 1);
             if (position > 1400) {

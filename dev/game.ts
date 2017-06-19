@@ -22,7 +22,7 @@ class Game {
         requestAnimationFrame(() => this.gameLoop());
 
         //making meteors all the time
-        setInterval(() => this.creatingMeteor(), 3000);
+        setInterval(() => this.creatingMeteor(), 3500);
         //giving score a starting point 
         this.score = 0;
         this.div  = document.createElement('score');
@@ -70,7 +70,7 @@ class Game {
 
     }
     private creatingMeteor() {
-        let random = Math.floor((Math.random() * 5) + 2);
+        let random = Math.floor((Math.random() * 4) + 1);
         for (let i = 0; i < random; i++) {
             let position = Math.floor((Math.random() * window.innerWidth) + 1);
             if(position > 1400){
