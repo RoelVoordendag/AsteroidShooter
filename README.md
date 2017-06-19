@@ -17,4 +17,6 @@ Met enscapulation gaaf je aan of sommige objecten in je class private of public 
 
 Composition:
 
+
+
 Inheritence:
