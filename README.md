@@ -27,3 +27,7 @@ Met composition laat je door één instance te maken meerdere instances aan. Ik 
 Inheritence:
 
 Met inheritence geef je dingen door net zoals dat ik de move functio in character zo door geef aan astroid and mini meteor
+
+UML
+
+![xml_good_v](https://user-images.githubusercontent.com/22053779/27302287-adfb6cfc-5536-11e7-89f4-49f85c1ca739.png)
