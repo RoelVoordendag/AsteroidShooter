@@ -30,4 +30,4 @@ Met inheritence geef je dingen door net zoals dat ik de move functio in characte
 
 UML
 
-![xml_good_v](https://user-images.githubusercontent.com/22053779/27302287-adfb6cfc-5536-11e7-89f4-49f85c1ca739.png)
+![xml asteroid shooter v3](https://user-images.githubusercontent.com/22053779/27328475-9015ca9e-55b2-11e7-98b6-a58b9d6fcce9.png)
