@@ -20,6 +20,7 @@ class Astroid extends character {
                         b.x + b.width > m.x &&
                         b.y < m.y + this.height &&
                         b.height + b.y > m.y) {
+                        
                         this.game.bullets.splice(this.game.bullets.indexOf(b), 1);
                         this.game.meteors.splice(this.game.meteors.indexOf(m), 1);
                         
